@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+body {
+    padding-bottom: 0;
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 899px),
+(display-mode: standalone) {
+    body {
+        padding-bottom: 5rem;
+    }
+}

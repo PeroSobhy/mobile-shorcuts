@@ -19,5 +19,5 @@
 </svelte:head>
 
 {@render children()}
-
+<link rel="manifest" href="/manifest.webmanifest" />
 <Navbar />

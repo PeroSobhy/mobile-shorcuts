@@ -1,6 +1,15 @@
 <script lang="ts">
     import ShortcutLogo from "#lib/assets/shortcuts.png";
     import { shortcuts } from "#lib/data/shortcuts.ts";
+
+    let searchQuery = $state("");
+
+    // Filter shortcuts dynamically based on input (case-insensitive)
+    let filteredShortcuts = $derived(
+        shortcuts.filter((shortcut) =>
+            shortcut.name.toLowerCase().includes(searchQuery.toLowerCase()),
+        ),
+    );
 </script>
 
 <svelte:head>
@@ -47,9 +56,31 @@
             <p class="subtitle">Your favorite apps, one tap away.</p>
         </section>
 
+        <!-- Search Bar Section -->
+        <section class="search-section">
+            <div class="search-wrapper">
+                <input
+                    type="text"
+                    bind:value={searchQuery}
+                    placeholder="Search shortcuts..."
+                    aria-label="Search shortcuts"
+                    class="search-input"
+                />
+                {#if searchQuery}
+                    <button
+                        class="clear-btn"
+                        onclick={() => (searchQuery = "")}
+                        aria-label="Clear search"
+                    >
+                        &times;
+                    </button>
+                {/if}
+            </div>
+        </section>
+
         <section class="shortcut-section" aria-label="App shortcuts">
             <div class="shortcut-grid">
-                {#each shortcuts as shortcut (shortcut.name)}
+                {#each filteredShortcuts as shortcut (shortcut.name)}
                     <a
                         class="shortcut-card"
                         href={shortcut.url}
@@ -61,6 +92,8 @@
                             {shortcut.name}
                         </span>
                     </a>
+                {:else}
+                    <p class="no-results">No shortcuts found</p>
                 {/each}
             </div>
         </section>
@@ -119,7 +152,7 @@
     }
 
     .hero {
-        padding: 2rem 0;
+        padding: 2rem 0 1rem;
         text-align: center;
     }
 
@@ -150,8 +183,59 @@
         font-size: 0.85rem;
     }
 
+    /* Search Bar Styles */
+    .search-section {
+        padding: 0.5rem 0 1rem;
+    }
+
+    .search-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1px solid #262626;
+        border-radius: 12px;
+        background: #101010;
+        color: #fff;
+        font-family: monospace;
+        font-size: 0.9rem;
+        outline: none;
+        transition:
+            border-color 0.2s ease,
+            background 0.2s ease;
+        -webkit-appearance: none;
+    }
+
+    .search-input::placeholder {
+        color: #666;
+    }
+
+    .search-input:focus {
+        border-color: #e95420;
+        background: #141414;
+    }
+
+    .clear-btn {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0 4px;
+    }
+
+    .clear-btn:hover {
+        color: #fff;
+    }
+
     .shortcut-section {
-        padding: 1rem 0 2rem;
+        padding: 0.5rem 0 2rem;
     }
 
     .shortcut-grid {
@@ -198,6 +282,14 @@
         font-size: 0.9rem;
         font-weight: 700;
         text-align: center;
+    }
+
+    .no-results {
+        grid-column: span 3;
+        text-align: center;
+        color: #666;
+        font-size: 0.85rem;
+        padding: 2rem 0;
     }
 
     /* Desktop browser */
@@ -250,6 +342,10 @@
 
         .shortcut-card {
             min-height: 105px;
+        }
+
+        .no-results {
+            grid-column: span 2;
         }
     }
 </style>

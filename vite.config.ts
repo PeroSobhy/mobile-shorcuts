@@ -11,11 +11,21 @@ export default defineConfig({
             registerType: 'autoUpdate',
             injectRegister: 'auto',
             devOptions: {
-                enabled: true
+                enabled: true,
+                type: 'module',
+                suppressWarnings: true,
+                navigateFallback: '/'
             },
             workbox: {
                 globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-                navigateFallback: null
+                navigateFallback: null,
+                runtimeCaching: [
+                    {
+                        urlPattern: ({ request }) => request.destination === 'document',
+                        handler: 'NetworkFirst',
+                        options: { cacheName: 'pages' }
+                    }
+                ]
             },
             manifest: {
                 name: 'Shortcuts',

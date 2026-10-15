@@ -215,7 +215,6 @@
     }
 
     .search-input:focus {
-        border-color: #e95420;
         background: #141414;
     }
 

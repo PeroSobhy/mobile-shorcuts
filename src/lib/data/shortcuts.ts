@@ -57,6 +57,6 @@ export const shortcuts: Shortcut[] = [
     { name: "Angular", url: "https://angular.dev" },
     { name: "YCombinator", url: "https://www.ycombinator.com" },
 { name: "freeCodeCamp", url: "https://www.freecodecamp.org" },
-{ name: "GitHub Explore", url: "https://github.com/explore" },
+{ name: "GitHub Explore", url: "https://www.github.com/explore" },
 { name: "Product Hunt", url: "https://www.producthunt.com" },
 ]

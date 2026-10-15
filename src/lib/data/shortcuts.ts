@@ -55,4 +55,5 @@ export const shortcuts: Shortcut[] = [
     { name: "Vue.js", url: "https://vuejs.org" },
     { name: "Nuxt", url: "https://nuxt.com" },
     { name: "Angular", url: "https://angular.dev" },
+    { name: "YCombinator", url: "https://www.ycombinator.com" },
 ]

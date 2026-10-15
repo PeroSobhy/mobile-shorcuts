@@ -56,4 +56,5 @@ export const shortcuts: Shortcut[] = [
     { name: "Nuxt", url: "https://nuxt.com" },
     { name: "Angular", url: "https://angular.dev" },
     { name: "YCombinator", url: "https://www.ycombinator.com" },
+{ name: "freeCodeCamp", url: "https://www.freecodecamp.org" },
 ]

@@ -63,4 +63,7 @@ export const shortcuts: Shortcut[] = [
     { name: "geeksforgeeks", url: "https://www.geeksforgeeks.org" },
     { name: "NeetCode", url: "https://neetcode.io" },
     { name: "ByteByteGo", url: "https://bytebytego.com" },
+    { name: "Gin", url: "https://gin-gonic.com/" },
+    { name: "Axum", url: "https://github.com/tokio-rs/axum" },
+    { name: "Ruby on Rails", url: "https://rubyonrails.org/" },
 ]
